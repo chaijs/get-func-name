@@ -1,5 +1,5 @@
 {
-  "name": "get-function-name",
+  "name": "get-func-name",
   "description": "Utility for getting a function's name for node and the browser",
   "keywords": [
     "get-function-name",
