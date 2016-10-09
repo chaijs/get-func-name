@@ -2,7 +2,7 @@
   "name": "get-func-name",
   "description": "Utility for getting a function's name for node and the browser",
   "keywords": [
-    "get-function-name",
+    "get-func-name",
     "chai util"
   ],
   "license": "MIT",
@@ -16,15 +16,15 @@
   ],
   "files": [
     "index.js",
-    "get-function-name.js"
+    "get-func-name.js"
   ],
   "main": "./index.js",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/chaijs/get-function-name.git"
+    "url": "git+ssh://git@github.com/chaijs/get-func-name.git"
   },
   "scripts": {
-    "build": "browserify --bare $npm_package_main --standalone getFunctionName -o get-function-name.js",
+    "build": "browserify --bare $npm_package_main --standalone getFuncName -o get-func-name.js",
     "lint": "eslint --ignore-path .gitignore .",
     "prepublish": "npm run build",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",

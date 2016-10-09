@@ -1,9 +1,9 @@
 'use strict';
 var assert = require('simple-assert');
-var getFunctionName = require('..');
-describe('getFunctionName', function () {
-  it('getFunctionName', function () {
-    // Asserting that `getFunctionName` behaves correctly
+var getFuncName = require('..');
+describe('getFuncName', function () {
+  it('getFuncName', function () {
+    // Asserting that `getFuncName` behaves correctly
     function /*one*/correctName/*two*/() { // eslint-disable-line no-inline-comments, spaced-comment
       return 0;
     }
@@ -16,8 +16,8 @@ describe('getFunctionName', function () {
         return 2;
       };
     }());
-    assert(getFunctionName(correctName) === 'correctName');
-    assert(getFunctionName(withoutComments) === 'withoutComments');
-    assert(getFunctionName(anonymousFunc) === '');
+    assert(getFuncName(correctName) === 'correctName');
+    assert(getFuncName(withoutComments) === 'withoutComments');
+    assert(getFuncName(anonymousFunc) === '');
   });
 });
