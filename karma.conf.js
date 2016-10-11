@@ -86,7 +86,7 @@ module.exports = function configureKarma(config) {
         recordVideo: true,
         startConnect: ('TRAVIS' in process.env) === false,
         tags: [
-          'getFunctionName_' + packageJson.version,
+          'getFuncName_' + packageJson.version,
           process.env.SAUCE_USERNAME + '@' + branch,
           build,
         ],
