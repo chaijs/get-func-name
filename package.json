@@ -60,7 +60,7 @@
     "browserify-istanbul": "^2.0.0",
     "coveralls": "2.11.14",
     "eslint": "^2.4.0",
-    "eslint-config-strict": "^9.1.0",
+    "eslint-config-strict": "^10.0.0",
     "eslint-plugin-filenames": "^1.1.0",
     "ghooks": "^1.0.1",
     "istanbul": "^0.4.2",
