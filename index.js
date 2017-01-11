@@ -10,6 +10,7 @@
  * ### .getFuncName(constructorFn)
  *
  * Returns the name of a function.
+ * When a non-function instance is passed, returns `null`.
  * This also includes a polyfill function if `aFunc.name` is not defined.
  *
  * @name getFuncName
@@ -21,6 +22,10 @@
 var toString = Function.prototype.toString;
 var functionNameMatch = /\s*function(?:\s|\s*\/\*[^(?:*\/)]+\*\/\s*)*([^\s\(\/]+)/;
 function getFuncName(aFunc) {
+  if (typeof aFunc !== 'function') {
+    return null;
+  }
+
   var name = '';
   if (typeof Function.prototype.name === 'undefined' && typeof aFunc.name === 'undefined') {
     // Here we run a polyfill if Function does not support the `name` property and if aFunc.name is not defined
