@@ -1,6 +1,8 @@
 <h1 align=center>
   <a href="http://chaijs.com" title="Chai Documentation">
-    <img alt="ChaiJS" src="http://chaijs.com/img/chai-logo.png"/> get-func-name
+    <img alt="ChaiJS" src="http://chaijs.com/img/chai-logo.png"/>
+    <br>
+    get-func-name
   </a>
 </h1>
 
