@@ -15,8 +15,7 @@
     "Aleksey Shvayka (https://github.com/shvaikalesh)"
   ],
   "files": [
-    "index.js",
-    "get-func-name.js"
+    "index.js"
   ],
   "type": "module",
   "main": "./index.js",
@@ -26,8 +25,6 @@
   },
   "scripts": {
     "lint": "eslint --ignore-path .gitignore .",
-    "build": "echo build",
-    "prepublish": "npm run build",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "pretest": "npm run lint",
     "test": "npm run test:node && npm run test:browser && npm run upload-coverage",
