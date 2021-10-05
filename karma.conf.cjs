@@ -1,12 +1,11 @@
-'use strict';
-var packageJson = require('./package.json');
-var defaultTimeout = 120000;
-var browserifyIstanbul = require('browserify-istanbul');
+const packageJson = require('./package.json');
+
+const defaultTimeout = 120000;
 module.exports = function configureKarma(config) {
-  var localBrowsers = [
-    'PhantomJS',
+  const localBrowsers = [
+    'Chrome',
   ];
-  var sauceLabsBrowsers = {
+  const sauceLabsBrowsers = {
     SauceChromeLatest: {
       base: 'SauceLabs',
       browserName: 'Chrome',
@@ -39,22 +38,15 @@ module.exports = function configureKarma(config) {
     },
   };
   config.set({
-    basePath: '',
+    basePath: '.',
     browsers: localBrowsers,
     logLevel: process.env.npm_config_debug ? config.LOG_DEBUG : config.LOG_INFO,
-    frameworks: [ 'browserify', 'mocha' ],
-    files: [ 'test/*.js' ],
+    frameworks: [ 'mocha' ],
+    files: [
+      { pattern: './index.js', type: 'module' },
+      { pattern: './test/*.js', type: 'module' },
+    ],
     exclude: [],
-    preprocessors: {
-      'test/*.js': [ 'browserify' ],
-    },
-    browserify: {
-      debug: true,
-      bare: true,
-      transform: [
-        browserifyIstanbul({ ignore: [ '**/node_modules/**', '**/test/**' ] }),
-      ],
-    },
     reporters: [ 'progress', 'coverage' ],
     coverageReporter: {
       type: 'lcov',
@@ -67,14 +59,14 @@ module.exports = function configureKarma(config) {
     captureTimeout: defaultTimeout,
     browserDisconnectTimeout: defaultTimeout,
     browserNoActivityTimeout: defaultTimeout,
-    singleRun: true,
+    singleRun: false,
   });
 
   if (process.env.SAUCE_ACCESS_KEY && process.env.SAUCE_USERNAME) {
-    var branch = process.env.TRAVIS_BRANCH || 'local';
-    var build = 'localbuild';
+    const branch = process.env.TRAVIS_BRANCH || 'local';
+    let build = 'localbuild';
     if (process.env.TRAVIS_JOB_NUMBER) {
-      build = 'travis@' + process.env.TRAVIS_JOB_NUMBER;
+      build = `travis@${ process.env.TRAVIS_JOB_NUMBER }`;
     }
     config.reporters.push('saucelabs');
     config.set({
@@ -86,8 +78,8 @@ module.exports = function configureKarma(config) {
         recordVideo: true,
         startConnect: ('TRAVIS' in process.env) === false,
         tags: [
-          'getFuncName_' + packageJson.version,
-          process.env.SAUCE_USERNAME + '@' + branch,
+          `getFuncName_${ packageJson.version }`,
+          `${ process.env.SAUCE_USERNAME }@${ branch }`,
           build,
         ],
       },

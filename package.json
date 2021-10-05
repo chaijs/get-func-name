@@ -18,19 +18,20 @@
     "index.js",
     "get-func-name.js"
   ],
+  "type": "module",
   "main": "./index.js",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/chaijs/get-func-name.git"
   },
   "scripts": {
-    "build": "browserify --bare $npm_package_main --standalone getFuncName -o get-func-name.js",
     "lint": "eslint --ignore-path .gitignore .",
+    "build": "echo build",
     "prepublish": "npm run build",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "pretest": "npm run lint",
     "test": "npm run test:node && npm run test:browser && npm run upload-coverage",
-    "test:browser": "karma start --singleRun=true",
+    "test:browser": "karma start karma.conf.cjs --singleRun=true",
     "test:node": "istanbul cover _mocha",
     "upload-coverage": "lcov-result-merger 'coverage/**/lcov.info' | coveralls; exit 0"
   },
@@ -41,7 +42,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "strict/es5"
+      "strict/es6"
     ],
     "env": {
       "es6": true
@@ -51,28 +52,25 @@
     },
     "rules": {
       "complexity": 0,
-      "max-statements": 0
+      "max-statements": 0,
+      "prefer-arrow-callback": "off"
     }
   },
   "dependencies": {},
   "devDependencies": {
-    "browserify": "^13.0.0",
-    "browserify-istanbul": "^2.0.0",
     "coveralls": "2.11.14",
     "eslint": "^2.4.0",
     "eslint-config-strict": "^9.1.0",
     "eslint-plugin-filenames": "^1.1.0",
     "ghooks": "^1.0.1",
     "istanbul": "^0.4.2",
-    "karma": "^1.3.0",
-    "karma-browserify": "^5.0.2",
+    "karma": "^6.3.4",
+    "karma-chrome-launcher": "^3.1.0",
     "karma-coverage": "^1.1.1",
-    "karma-mocha": "^1.2.0",
-    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-mocha": "^2.0.1",
     "karma-sauce-launcher": "^1.0.0",
     "lcov-result-merger": "^1.0.2",
-    "mocha": "^3.1.2",
-    "phantomjs-prebuilt": "^2.1.5",
+    "mocha": "^9.1.2",
     "semantic-release": "^4.3.5",
     "travis-after-all": "^1.4.4",
     "validate-commit-msg": "^2.3.1"
