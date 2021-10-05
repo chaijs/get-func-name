@@ -11,8 +11,8 @@
  * @api public
  */
 
-const toString = Function.prototype.toString;
-const functionNameMatch = /\s*function(?:\s|\s*\/\*[^(?:*\/)]+\*\/\s*)*([^\s\(\/]+)/;
+const { toString } = Function.prototype;
+const functionNameMatch = /\s*function(?:\s|\s*\/\*[^(?:*/)]+\*\/\s*)*([^\s(/]+)/;
 function getFuncName(aFunc) {
   if (typeof aFunc !== 'function') {
     return null;
@@ -24,10 +24,11 @@ function getFuncName(aFunc) {
     // eslint-disable-next-line prefer-reflect
     const match = toString.call(aFunc).match(functionNameMatch);
     if (match) {
-      name = match[1];
+      [ name ] = match;
     }
   } else {
     // If we've got a `name` property we just use it
+    // eslint-disable-next-line prefer-destructuring
     name = aFunc.name;
   }
 

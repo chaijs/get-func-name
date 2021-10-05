@@ -54,7 +54,7 @@ describe('getFuncName', function () {
 
   it('should return `null` when passed a Symbol as argument', function () {
     if (typeof Symbol !== 'undefined') {
-      assert(getFuncName(Symbol()) === null);
+      assert(getFuncName(Symbol('symbol')) === null);
     }
   });
 
