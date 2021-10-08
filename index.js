@@ -1,11 +1,3 @@
-'use strict';
-
-/* !
- * Chai - getFuncName utility
- * Copyright(c) 2012-2016 Jake Luer <jake@alogicalparadox.com>
- * MIT Licensed
- */
-
 /**
  * ### .getFuncName(constructorFn)
  *
@@ -19,26 +11,28 @@
  * @api public
  */
 
-var toString = Function.prototype.toString;
-var functionNameMatch = /\s*function(?:\s|\s*\/\*[^(?:*\/)]+\*\/\s*)*([^\s\(\/]+)/;
+const { toString } = Function.prototype;
+const functionNameMatch = /\s*function(?:\s|\s*\/\*[^(?:*/)]+\*\/\s*)*([^\s(/]+)/;
 function getFuncName(aFunc) {
   if (typeof aFunc !== 'function') {
     return null;
   }
 
-  var name = '';
+  let name = '';
   if (typeof Function.prototype.name === 'undefined' && typeof aFunc.name === 'undefined') {
     // Here we run a polyfill if Function does not support the `name` property and if aFunc.name is not defined
-    var match = toString.call(aFunc).match(functionNameMatch);
+    // eslint-disable-next-line prefer-reflect
+    const match = toString.call(aFunc).match(functionNameMatch);
     if (match) {
-      name = match[1];
+      [ name ] = match;
     }
   } else {
     // If we've got a `name` property we just use it
+    // eslint-disable-next-line prefer-destructuring
     name = aFunc.name;
   }
 
   return name;
 }
 
-module.exports = getFuncName;
+export { getFuncName };

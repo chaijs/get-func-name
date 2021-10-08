@@ -1,5 +1,4 @@
-'use strict';
-var getFuncName = require('..');
+import { getFuncName } from '../index.js';
 function assert(expr, msg) {
   if (!expr) {
     throw new Error(msg || 'Assertion Failed');
@@ -24,7 +23,7 @@ describe('getFuncName', function () {
   });
 
   it('should return empty string for anonymous functions', function () {
-    var anonymousFunc = (function () {
+    const anonymousFunc = (function () {
       return function () { // eslint-disable-line func-style
         return 2;
       };
@@ -54,7 +53,7 @@ describe('getFuncName', function () {
 
   it('should return `null` when passed a Symbol as argument', function () {
     if (typeof Symbol !== 'undefined') {
-      assert(getFuncName(Symbol()) === null);
+      assert(getFuncName(Symbol('symbol')) === null);
     }
   });
 
