@@ -1,6 +1,11 @@
 'use strict';
-var assert = require('simple-assert');
 var getFuncName = require('..');
+function assert(expr, msg) {
+  if (!expr) {
+    throw new Error(msg || 'Assertion Failed');
+  }
+}
+
 describe('getFuncName', function () {
   it('should get the function name', function () {
     function normalFunction() {
