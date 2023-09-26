@@ -27,6 +27,19 @@ describe('getFuncName', function () {
     assert(getFuncName(anonymousFunc) === '');
   });
 
+  it('should return an empty string for overly large function names', function () {
+    // eslint-disable-next-line max-len, func-style, func-name-matching, id-length
+    const longFunc = function aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa() {};
+    Object.defineProperty(longFunc, 'name', { value: undefined });
+    // Temporarily disable the Function.prototype.name getter
+    const realFPName = Object.getOwnPropertyDescriptor(Function.prototype, 'name');
+    // eslint-disable-next-line no-extend-native
+    Object.defineProperty(Function.prototype, 'name', { value: undefined });
+    assert(getFuncName(longFunc) === '');
+    // eslint-disable-next-line no-extend-native
+    Object.defineProperty(Function.prototype, 'name', realFPName);
+  });
+
   it('should return `null` when passed a String as argument', function () {
     assert(getFuncName('') === null);
   });
