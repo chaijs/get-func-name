@@ -24,7 +24,7 @@ function getFuncName(aFunc) {
     // Here we run a polyfill if Function does not support the `name` property and if aFunc.name is not defined
     // eslint-disable-next-line prefer-reflect
     const functionSource = toString.call(aFunc);
-    // To avoid unconstrained resource consumption due to pathalogically large function names,
+    // To avoid unconstrained resource consumption due to pathologically large function names,
     // we limit the available return value to be less than 512 characters.
     if (functionSource.indexOf('(') > maxFunctionSourceLength) {
       return name;
