@@ -23,16 +23,8 @@ export default defineConfig([
     files: ['test/**/*.js'],
     languageOptions: {
       globals: {
-        ...globals.browser,
-      }
-    }
-  },
-  {
-    files: ['test/**/*.js'],
-    languageOptions: {
-      globals: {
         ...globals.mocha,
-        ...globals.node,
+        ...globals["shared-node-browser"],
       }
     }
   }
