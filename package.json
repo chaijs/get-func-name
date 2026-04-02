@@ -29,7 +29,7 @@
     "pretest": "npm run lint",
     "test": "npm run test:node && npm run test:browser",
     "test:browser": "karma start karma.conf.cjs --singleRun=true",
-    "test:node": "istanbul cover _mocha"
+    "test:node": "c8 mocha"
   },
   "config": {
     "ghooks": {
@@ -38,11 +38,10 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "coveralls": "^3.1.1",
+    "c8": "^11.0.0",
     "eslint": "^10.1.0",
     "ghooks": "^2.0.4",
     "globals": "^17.4.0",
-    "istanbul": "^0.4.5",
     "karma": "^6.4.4",
     "karma-chrome-launcher": "^3.2.0",
     "karma-mocha": "^2.0.1",
