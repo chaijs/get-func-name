@@ -15,7 +15,7 @@ describe('getFuncName', function () {
   });
 
   it('should get correct name when function is surrounded by comments', function () {
-    function /*one*/correctName/*two*/() { // eslint-disable-line no-inline-comments, spaced-comment
+    function /*one*/correctName/*two*/() {
       return 0;
     }
 
@@ -24,7 +24,7 @@ describe('getFuncName', function () {
 
   it('should return empty string for anonymous functions', function () {
     const anonymousFunc = (function () {
-      return function () { // eslint-disable-line func-style
+      return function () {
         return 2;
       };
     }());
@@ -32,15 +32,12 @@ describe('getFuncName', function () {
   });
 
   it('should return an empty string for overly large function names', function () {
-    // eslint-disable-next-line max-len, func-style, func-name-matching, id-length
     const longFunc = function aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa() {};
     Object.defineProperty(longFunc, 'name', { value: undefined });
     // Temporarily disable the Function.prototype.name getter
     const realFPName = Object.getOwnPropertyDescriptor(Function.prototype, 'name');
-    // eslint-disable-next-line no-extend-native
     Object.defineProperty(Function.prototype, 'name', { value: undefined });
     assert(getFuncName(longFunc) === '');
-    // eslint-disable-next-line no-extend-native
     Object.defineProperty(Function.prototype, 'name', realFPName);
   });
 

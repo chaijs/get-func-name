@@ -22,7 +22,6 @@ function getFuncName(aFunc) {
   let name = '';
   if (typeof Function.prototype.name === 'undefined' && typeof aFunc.name === 'undefined') {
     // Here we run a polyfill if Function does not support the `name` property and if aFunc.name is not defined
-    // eslint-disable-next-line prefer-reflect
     const functionSource = toString.call(aFunc);
     // To avoid unconstrained resource consumption due to pathalogically large function names,
     // we limit the available return value to be less than 512 characters.
@@ -35,7 +34,6 @@ function getFuncName(aFunc) {
     }
   } else {
     // If we've got a `name` property we just use it
-    // eslint-disable-next-line prefer-destructuring
     name = aFunc.name;
   }
 
