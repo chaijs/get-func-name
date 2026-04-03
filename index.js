@@ -23,7 +23,7 @@ function getFuncName(aFunc) {
   if (typeof Function.prototype.name === 'undefined' && typeof aFunc.name === 'undefined') {
     // Here we run a polyfill if Function does not support the `name` property and if aFunc.name is not defined
     const functionSource = toString.call(aFunc);
-    // To avoid unconstrained resource consumption due to pathalogically large function names,
+    // To avoid unconstrained resource consumption due to pathologically large function names,
     // we limit the available return value to be less than 512 characters.
     if (functionSource.indexOf('(') > maxFunctionSourceLength) {
       return name;
