@@ -36,6 +36,11 @@
       "commit-msg": "validate-commit-msg"
     }
   },
+  "overrides": {
+    "c8": {
+      "yargs": "^18.0.0"
+    }
+  },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "c8": "^11.0.0",
