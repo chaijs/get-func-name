@@ -35,13 +35,13 @@
       src="https://img.shields.io/coveralls/chaijs/get-func-name/master.svg?style=flat-square"
     />
   </a>
-  <a href="https://www.npmjs.com/packages/get-func-name">
+  <a href="https://www.npmjs.com/package/get-func-name">
     <img
       alt="npm:?"
       src="https://img.shields.io/npm/v/get-func-name.svg?style=flat-square"
     />
   </a>
-  <a href="https://www.npmjs.com/packages/get-func-name">
+  <a href="https://www.npmjs.com/package/get-func-name">
     <img
       alt="dependencies:?"
       src="https://img.shields.io/npm/dm/get-func-name.svg?style=flat-square"
